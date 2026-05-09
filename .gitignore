@@ -1,0 +1,18 @@
+# Binários e Executáveis
+*.exe
+*.o
+*.obj
+*.out
+
+# Pastas de Build
+build/
+bin/
+obj/
+
+# Arquivos do VS Code ou IDEs
+.vscode/
+*.code-workspace
+.vs/
+
+# Assets temporários
+*.log
