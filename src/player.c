@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 
-int validador_nome(char *nome, int (*mat)[5], int cont){
+int validador_nome(char *nome, int mat[11][5], int cont){
     if(cont<3) return -1;
 
     for(int i=0;i<10;i++){
@@ -66,7 +66,7 @@ void listar_rank(int mat[11][5]) {
     }
 }
 
-void salvar_rank(int (*mat)[5]){
+void salvar_rank(int mat[11][5]){
     FILE *rank=fopen("rank.txt", "w+");
     for(int i=0;i<11;i++){
         for(int j=0;j<5;j++){
@@ -76,7 +76,7 @@ void salvar_rank(int (*mat)[5]){
     }
     fclose(rank);
 }
-void recuperar_rank(int (*mat)[5]){
+void recuperar_rank(int mat[11][5]){
     FILE *rank=fopen("rank.txt", "r");
     for(int i=0;i<11;i++){
         for(int j=0;j<5;j++){
