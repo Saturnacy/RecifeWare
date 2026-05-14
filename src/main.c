@@ -42,11 +42,11 @@ int main() {
                     status.nome_usuario[cont_caracter]='\0';
             }
 
-            if ((IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) && validador_nome(status.nome_usuario,ranking,cont_caracter)==1) {
+            if ((IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) && validate_name(status.nome_usuario,ranking,cont_caracter)==1) {
                 
                 currentState = STATE_SPLASH_CESAR;
 
-            } else if(validador_nome(status.nome_usuario,ranking,cont_caracter)==0){
+            } else if(validate_name(status.nome_usuario,ranking,cont_caracter)==0){
                 DrawText("Nome Invalido", 210, 160, 20, MAROON);
             }
 
@@ -59,7 +59,7 @@ int main() {
 
             switch (currentState) {
                 case STATE_TITLE: {
-                    Color corStatus = (validador_nome(status.nome_usuario,ranking,cont_caracter) == 0) ? RED : (validador_nome(status.nome_usuario,ranking,cont_caracter) == 1 ? GREEN : DARKGRAY);
+                    Color corStatus = (validate_name(status.nome_usuario,ranking,cont_caracter) == 0) ? RED : (validate_name(status.nome_usuario,ranking,cont_caracter) == 1 ? GREEN : DARKGRAY);
 
                     DrawRectangleLines((1200/2)-80, (720/2) - 50, 80, 40, corStatus);
                     DrawText(status.nome_usuario, (1200/2)-75, (720/2) - 45, 30, corStatus);
@@ -68,7 +68,7 @@ int main() {
                     DrawText("Pressione ENTER ou SPACE para iniciar", 1200/2 - 180, 720/2 + 30, 20, DARKGRAY);
                     DrawText("Use WASD para mover, E para atirar, ESC para voltar", 1200/2 - 220, 720/2 + 60, 18, DARKGRAY);
                     
-                    if (validador_nome(status.nome_usuario,ranking,cont_caracter) == 0) {
+                    if (validate_name(status.nome_usuario,ranking,cont_caracter) == 0) {
                         DrawText("NOME INVÁLIDO OU JÁ EXISTENTE", 1200/2 - 130, 720/2 - 80, 15, RED);
                     }
                 } break;
