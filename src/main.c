@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "escaladaBrenan.h"
 #include "player.h"
 
 typedef enum {
@@ -23,6 +24,9 @@ int main() {
     
     Texture2D cesarLogo = LoadTexture("assets/sprites/cesar_logo.png");
     float CESARlogoscale = 2.0f;
+    
+    Texture2D gameLogo = LoadTexture("assets/sprites/game_logo.png");
+    float GAMElogoscale = 2.0f;
 
     float fadeAlpha = 255.0f;
     int frameCounter = 0;
@@ -30,7 +34,6 @@ int main() {
     while (!WindowShouldClose()) {
         switch (currentState) {
             case STATE_SPLASH_FADE_IN:
-                // Mudei de 8.0f para 2.0f para a animação ficar mais lenta
                 fadeAlpha -= 2.0f; 
                 if (fadeAlpha <= 0) {
                     fadeAlpha = 0;
@@ -39,6 +42,15 @@ int main() {
                 break;
                 
             case STATE_SPLASH_CESAR:
+                frameCounter++;
+                if (frameCounter > 100) { 
+                    currentState = STATE_INTRO;
+                    frameCounter = 0;
+                    fadeAlpha = 0;
+                }
+                break;
+
+            case STATE_INTRO:
                 frameCounter++;
                 if (frameCounter > 100) { 
                     currentState = STATE_TITLE;
@@ -69,8 +81,10 @@ int main() {
             }
 
             if ((IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) && validate_name(status.nome_usuario,ranking,cont_caracter)==1) {
+                fadeAlpha=0.0f;
+                escaladaBrenan();
                 
-                currentState = STATE_SPLASH_CESAR;
+                currentState = STATE_TITLE;
 
             } else if(validate_name(status.nome_usuario,ranking,cont_caracter)==0){
                 DrawText("Nome Invalido", 210, 160, 20, MAROON);
@@ -103,6 +117,22 @@ int main() {
                     
                 } break;
 
+                case STATE_INTRO:
+                {
+                    Rectangle sourceRec = { 0.0f, 0.0f, (float)gameLogo.width, (float)gameLogo.height };
+                    float scaledWidth = (float)gameLogo.width * GAMElogoscale;
+                    float scaledHeight = (float)gameLogo.height * GAMElogoscale;
+                    Rectangle destRec = {
+                        (screenWidth - scaledWidth) / 2.0f,
+                        (screenHeight - scaledHeight) / 2.0f,
+                        scaledWidth,
+                        scaledHeight
+                    };
+                    Vector2 origin = { 0.0f, 0.0f };
+                    DrawTexturePro(gameLogo, sourceRec, destRec, origin, 0.0f, WHITE);
+                    
+                } break;
+                
                 case STATE_TITLE: {
                     Color corStatus = (validate_name(status.nome_usuario,ranking,cont_caracter) == 0) ? RED : (validate_name(status.nome_usuario,ranking,cont_caracter) == 1 ? GREEN : DARKGRAY);
 
@@ -118,10 +148,6 @@ int main() {
                     }
                 } break;
 
-                case STATE_INTRO:
-                    DrawText("HISTORIA DO JOGO...", 1200/2 - 100, 720/2, 20, BLACK);
-                    break;
-                
                 default: break;
             }
             
