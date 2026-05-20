@@ -14,8 +14,8 @@ void escaladaBrenan(){
 
     SetTargetFPS(60);
     int frames = 300;
-    Texture2D background = LoadTexture("assets/sprites/escaleBrenan/brenan.png");
-    Texture2D player = LoadTexture("assets/sprites/escaleBrenan/player.png");
+    Texture2D background = LoadTexture("../assets/sprites/escaleBrenan/brenan.png");
+    Texture2D player = LoadTexture("../assets/sprites/escaleBrenan/player.png");
 
     while(frames> 0 && !WindowShouldClose()){
         if(IsKeyPressed(KEY_SPACE)){

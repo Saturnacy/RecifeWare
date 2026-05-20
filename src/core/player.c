@@ -24,7 +24,6 @@ int validate_name(char *nome, int mat[11][5], int cont){
 
 }
 
-
 void update_ranking(int mat[11][5], int *nova) {
     for(int i=0;i<10;i++){
         if(mat[i][4]<nova[4]){

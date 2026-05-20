@@ -22,10 +22,10 @@ int main() {
     int cont_caracter=0;
     Jogador status={ 0, "" };
     
-    Texture2D cesarLogo = LoadTexture("assets/sprites/cesar_logo.png");
+    Texture2D cesarLogo = LoadTexture("../assets/sprites/cesar_logo.png");
     float CESARlogoscale = 2.0f;
     
-    Texture2D gameLogo = LoadTexture("assets/sprites/game_logo.png");
+    Texture2D gameLogo = LoadTexture("../assets/sprites/game_logo.png");
     float GAMElogoscale = 2.0f;
 
     float fadeAlpha = 255.0f;
@@ -34,7 +34,7 @@ int main() {
     while (!WindowShouldClose()) {
         switch (currentState) {
             case STATE_SPLASH_FADE_IN:
-                fadeAlpha -= 2.0f; 
+                fadeAlpha -= 8.0f; 
                 if (fadeAlpha <= 0) {
                     fadeAlpha = 0;
                     currentState = STATE_SPLASH_CESAR;
@@ -43,10 +43,17 @@ int main() {
                 
             case STATE_SPLASH_CESAR:
                 frameCounter++;
-                if (frameCounter > 100) { 
-                    currentState = STATE_INTRO;
+                if (frameCounter > 120) { 
+                    currentState = STATE_FADE_OUT;
                     frameCounter = 0;
-                    fadeAlpha = 0;
+                }
+                break;
+
+            case STATE_FADE_OUT:
+                fadeAlpha += 8.0f;
+                if (fadeAlpha >= 255.0f) {
+                    fadeAlpha = 255.0f;
+                    currentState = STATE_INTRO;
                 }
                 break;
 
@@ -60,10 +67,10 @@ int main() {
             default:
                 break;
         }
+
         if(currentState==STATE_TITLE){
             int caractere=GetCharPressed();
-            while (caractere>0)
-            {
+            while (caractere>0) {
                 if(caractere>=97 && caractere<=122){
                     caractere-=32;
                 }
@@ -89,13 +96,15 @@ int main() {
             } else if(validate_name(status.nome_usuario,ranking,cont_caracter)==0){
                 DrawText("Nome Invalido", 210, 160, 20, MAROON);
             }
-
-        
-
         }
 
-       BeginDrawing();
-            ClearBackground(RAYWHITE);
+        BeginDrawing();
+            
+            if (currentState == STATE_TITLE) {
+                ClearBackground(RAYWHITE);
+            } else {
+                ClearBackground(BLACK);
+            }
 
             switch (currentState) {
                 
@@ -113,7 +122,7 @@ int main() {
                         scaledHeight
                     };
                     Vector2 origin = { 0.0f, 0.0f };
-                    DrawTexturePro(cesarLogo, sourceRec, destRec, origin, 0.0f, BLACK);
+                    DrawTexturePro(cesarLogo, sourceRec, destRec, origin, 0.0f, WHITE);
                     
                 } break;
 
@@ -154,8 +163,8 @@ int main() {
             if (fadeAlpha > 0) {
                 DrawRectangle(0, 0, screenWidth, screenHeight, Fade(BLACK, fadeAlpha / 255.0f));
             }
+            
         EndDrawing();
-    
     }
 
     CloseWindow();
