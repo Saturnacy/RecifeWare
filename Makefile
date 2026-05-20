@@ -36,13 +36,13 @@ all: $(TARGET)
 
 # Como construir o executável
 $(TARGET): $(SOURCES)
-    $(MKDIR)
-    $(CC) $(SOURCES) -o $(TARGET) $(CFLAGS) $(LDFLAGS)
+	$(MKDIR)
+	$(CC) $(SOURCES) -o $(TARGET) $(CFLAGS) $(LDFLAGS)
 
 # Limpa a pasta build
 clean:
-    $(RM)
+	$(RM)
 
 # Roda o jogo
 run: all
-    ./$(TARGET)
+	./$(TARGET)
