@@ -1,12 +1,9 @@
 #ifndef SORT_H
 #define SORT_H
 
-typedef struct { 
-    int weight;
-    int id;
-} gameprops;
+#include "queue.h"
 
-gameprops *assign_game_weights(gameprops *game_array, int len);
-gameprops *insertion_sort_games(gameprops *game_array, int len);
+void assign_game_weights(node_q **front, int len);
+void insertion_sort_games(node_q **front, node_q **rear);
 
 #endif

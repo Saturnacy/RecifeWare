@@ -1,37 +1,57 @@
 #include "sort.h"
+#include "queue.h"
 #include <stdlib.h>
 #include "raylib.h"
 
-gameprops *assign_game_weights(gameprops *game_array, int len) {
-    if (game_array != NULL && len > 0) {
-        for (int i = 0; i < len - 1; i++) {
-            game_array[i].weight = GetRandomValue(0, 100);
-            game_array[i].id = i + 1;
+void assign_game_weights(node_q **front, int len) {
+    if (*front != NULL) {
+        node_q *current = *front;
+        int count = 1;
+
+        while (current != NULL) {
+            if (count == len) {
+                current->weight = 9999; 
+            } else {
+                current->weight = GetRandomValue(0, 100);
+            }
+            
+            count++;
+            current = current->next;
         }
-
-        game_array[len-1].weight = 0; 
-        game_array[len-1].id = len;
-
-        return game_array;
-    } else {
-        return NULL;
     }
 }
 
-gameprops *insertion_sort_games(gameprops *game_array, int len) {
-    if (game_array != NULL && len > 0) {
-        for (int i = 1; i < len - 1; i++) {
-            int j = i;
-            while(j > 0 && (game_array[j].weight < game_array[j-1].weight)) {
-                gameprops temp = game_array[j-1];
-                game_array[j-1] = game_array[j];
-                game_array[j] = temp;
-                --j;
+void insertion_sort_games(node_q **front, node_q **rear) {
+    if (*front != NULL && (*front)->next != NULL) {
+        node_q *sorted = NULL;
+        node_q *current = *front;
+
+        while (current != NULL) {
+            node_q *next_node = current->next;
+
+            if (sorted == NULL || current->weight < sorted->weight) {
+                current->next = sorted;
+                sorted = current;
+            } else {
+                node_q *search = sorted;
+                
+                while (search->next != NULL && search->next->weight < current->weight) {
+                    search = search->next;
+                }
+
+                current->next = search->next;
+                search->next = current;
             }
+
+            current = next_node;
         }
 
-        return game_array;
-    } else {
-        return NULL;
+        *front = sorted;
+
+        node_q *temp = *front;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        *rear = temp;
     }
 }
