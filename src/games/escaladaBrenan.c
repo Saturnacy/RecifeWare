@@ -4,6 +4,10 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "timer_bomba.h"
+
+#define TEMPO_PAVIO       5.0f  
+#define TEMPO_BOMBA_FUSE 1.5f 
 
 void escaladaBrenan(){
     int y=500;
@@ -16,8 +20,13 @@ void escaladaBrenan(){
     int frames = 300;
     Texture2D background = LoadTexture("../assets/sprites/escaleBrenan/brenan.png");
     Texture2D player = LoadTexture("../assets/sprites/escaleBrenan/player.png");
+    
+    TimerBomba timer;
+    InitTimerBomba(&timer, TEMPO_PAVIO, TEMPO_BOMBA_FUSE);
 
-    while(frames> 0 && !WindowShouldClose()){
+    while(!TimerTerminou(&timer) && !WindowShouldClose()){
+        
+            UpdateTimerBomba(&timer);
         if(IsKeyPressed(KEY_SPACE)){
             y-=15;
             altura+=5;
@@ -63,6 +72,7 @@ void escaladaBrenan(){
 
             DrawText(TextFormat("Altura: %d/150", altura), 20, 20, 20, RED);
             DrawText(TextFormat("Tempo Restante: %d", frames / 60), 20, 50, 20, RED);
+            DrawTimerBomba(&timer, screenWidth, screenHeight);
                 
         EndDrawing();
     }
@@ -164,6 +174,7 @@ void escaladaBrenan(){
         }
     }
     
+    UnloadTimerBomba(&timer); 
     UnloadTexture(background);
     UnloadTexture(player);
 }
