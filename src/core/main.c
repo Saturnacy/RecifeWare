@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "escaladaBrenan.h"
+#include "crabber.h"
 #include "player.h"
 #include "queue.h"
 #include "sort.h"
@@ -111,7 +112,7 @@ int main() {
 
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
                 if (CheckCollisionPointRec(mousePoint, btnMain)) {
-                    escaladaBrenan(); 
+                    crabber(); 
                 } else if (CheckCollisionPointRec(mousePoint, btnArcade)) {
                     currentState = STATE_DEBUG; 
                 } else if (CheckCollisionPointRec(mousePoint, btnOptions)) {
