@@ -3,7 +3,7 @@
 #include "raylib.h"
 #include <stdlib.h>
 
-#define TEMPO_PAVIO 10.0f
+#define TEMPO_PAVIO 12.0f
 #define TEMPO_BOMBA_FUSE 1.5f
 #define LINHAS_AGUA 4
 #define PLAT_POR_LINHA 3
@@ -52,7 +52,7 @@ void crabber()
     Plataforma plats[LINHAS_AGUA][PLAT_POR_LINHA];
     for (int l = 0; l < LINHAS_AGUA; l++)
     {
-        float vel = (2.5f + l * 0.8f) * ((l % 2 == 0) ? 1.0f : -1.0f);
+        float vel = (1.5f + l * 0.5f) * ((l % 2 == 0) ? 1.0f : -1.0f);
         for (int p = 0; p < PLAT_POR_LINHA; p++)
         {
             plats[l][p].w = 140.0f + (float)(rand() % 80);
@@ -126,7 +126,10 @@ void crabber()
             for (int p = 0; p < PLAT_POR_LINHA; p++)
             {
                 float reduzirW = plats[l][p].w * 0.15f;
-                Rectangle rPlat = {plats[l][p].x + reduzirW / 2.0f, plats[l][p].y, plats[l][p].w - reduzirW, plats[l][p].h};
+                float naturalH = (float)texObjRio.height * (plats[l][p].w / (float)texObjRio.width);
+                float hitH = naturalH < plats[l][p].h ? naturalH : plats[l][p].h;
+                float hitY = plats[l][p].y + (plats[l][p].h - hitH) / 2.0f;
+                Rectangle rPlat = {plats[l][p].x + reduzirW / 2.0f, hitY, plats[l][p].w - reduzirW, hitH};
                 Rectangle rPlay = {playerX, playerY, playerW, playerH};
                 if (CheckCollisionRecs(rPlay, rPlat))
                 {

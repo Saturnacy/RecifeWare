@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TEMPO_PAVIO 3.0f
+#define TEMPO_PAVIO 5.0f
 #define TEMPO_BOMBA_FUSE 1.5f
 
 typedef struct
@@ -150,6 +150,7 @@ void cozinhaDeTapioca()
             arrastando = -1;
         }
         BeginDrawing();
+        ClearBackground(BLACK);
         DrawTexturePro(texFundo, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
         DrawRectangleRounded((Rectangle){20, 20, 260, 90}, 0.2f, 4, (Color){0, 0, 0, 140});
         DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
@@ -177,6 +178,7 @@ void cozinhaDeTapioca()
         {
             UpdateTimerBomba(&timer);
             BeginDrawing();
+            ClearBackground(BLACK);
             DrawTexturePro(texFundo, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
             DrawTimerBomba(&timer, screenWidth, screenHeight);
             DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
@@ -189,6 +191,7 @@ void cozinhaDeTapioca()
         {
             frames--;
             BeginDrawing();
+            ClearBackground(BLACK);
             DrawTexturePro(texFundo, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
             int ts = 40, lw = MeasureText("Vitoria", ts);
             DrawText("Vitoria", (screenWidth / 2) - (lw / 2), (screenHeight / 2) - (ts / 2), ts, GREEN);
@@ -202,6 +205,7 @@ void cozinhaDeTapioca()
         {
             frames--;
             BeginDrawing();
+            ClearBackground(BLACK);
             DrawTexturePro(texFundo, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
             int ts = 40, lw = MeasureText("Derrota", ts);
             DrawText("Derrota", (screenWidth / 2) - (lw / 2), (screenHeight / 2) - (ts / 2), ts, RED);

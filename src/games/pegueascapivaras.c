@@ -3,7 +3,7 @@
 #include "raylib.h"
 #include <stdlib.h>
 
-#define TEMPO_PAVIO 8.0f
+#define TEMPO_PAVIO 10.0f
 #define TEMPO_BOMBA_FUSE 1.5f
 #define NUM_BURACOS 6
 
@@ -89,6 +89,7 @@ void pegueAsCapivaras()
             }
         }
         BeginDrawing();
+        ClearBackground(BLACK);
         DrawTexturePro(texFundo, srcFundo, destFundo, (Vector2){0, 0}, 0.0f, WHITE);
         for (int i = 0; i < NUM_BURACOS; i++)
         {
@@ -111,6 +112,7 @@ void pegueAsCapivaras()
     {
         UpdateTimerBomba(&timer);
         BeginDrawing();
+        ClearBackground(BLACK);
         DrawTexturePro(texFundo, srcFundo, destFundo, (Vector2){0, 0}, 0.0f, WHITE);
         DrawTimerBomba(&timer, screenWidth, screenHeight);
         DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
@@ -120,6 +122,7 @@ void pegueAsCapivaras()
     {
         frames--;
         BeginDrawing();
+        ClearBackground(BLACK);
         DrawTexturePro(texFundo, srcFundo, destFundo, (Vector2){0, 0}, 0.0f, WHITE);
         int tamanhoFonte = 40;
         if (flag)

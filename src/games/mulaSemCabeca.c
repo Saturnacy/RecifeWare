@@ -3,7 +3,7 @@
 #include "raylib.h"
 #include <stdlib.h>
 
-#define TEMPO_PAVIO 8.0f
+#define TEMPO_PAVIO 10.0f
 #define TEMPO_BOMBA_FUSE 1.5f
 #define SPR "assets/sprites/mulaSemCabeca/"
 #define MULA_SCALE 2.0f
@@ -120,9 +120,9 @@ void mulaSemCabeca(void)
             int t = obsTipo[i];
             float obsW = obsTextures[t].width * OBS_SCALE;
             float obsH = obsTextures[t].height * OBS_SCALE;
-            float reduzirW = obsW * 0.25f;
-            float reduzirH = obsH * 0.15f;
-            Rectangle obsRect = {obs[i].x + reduzirW / 2.0f, obs[i].y + reduzirH, obsW - reduzirW, obsH - reduzirH};
+            float hitW = obsW < 32.0f ? obsW : 32.0f;
+            float hitH = obsH < 32.0f ? obsH : 32.0f;
+            Rectangle obsRect = {obs[i].x + (obsW - hitW) / 2.0f, obs[i].y + (obsH - hitH) / 2.0f, hitW, hitH};
             if (CheckCollisionRecs(playerRect, obsRect))
             {
                 colisao = 1;
@@ -130,6 +130,7 @@ void mulaSemCabeca(void)
             }
         }
         BeginDrawing();
+        ClearBackground(BLACK);
         DrawBgScroll(background, bgX, screenWidth, screenHeight);
         DrawSprite(mulaFrames[frameAtual], playerX, playerY, MULA_SCALE);
         for (int i = 0; i < NUM_OBS; i++)
@@ -150,6 +151,7 @@ void mulaSemCabeca(void)
             if (bgX <= -(float)screenWidth)
                 bgX = 0.0f;
             BeginDrawing();
+            ClearBackground(BLACK);
             DrawBgScroll(background, bgX, screenWidth, screenHeight);
             DrawSprite(mulaFrames[frameAtual], playerX, playerY, MULA_SCALE);
             for (int i = 0; i < NUM_OBS; i++)

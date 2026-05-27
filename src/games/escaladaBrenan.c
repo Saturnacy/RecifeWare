@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "timer_bomba.h"
 
-#define TEMPO_PAVIO 5.0f
+#define TEMPO_PAVIO 7.0f
 #define TEMPO_BOMBA_FUSE 1.5f
 #define FRAME_W_RUN 17
 #define FRAME_H_RUN 33
@@ -22,7 +22,7 @@ void escaladaBrenan()
     int y = 500;
     int altura = 0;
     int flag = 0;
-    int frames = 300;
+    int frames = 420;
     int frameAtual = 0;
     float PLAYERscale = 4.0f;
     Texture2D background = LoadTexture("assets/sprites/escaleBrenan/bgobren.png");
@@ -50,6 +50,7 @@ void escaladaBrenan()
         Rectangle srcPlayer = {(float)(frameAtual * FRAME_W_RUN), 0.0f, (float)FRAME_W_RUN, (float)FRAME_H_RUN};
         Rectangle dstPlayer = {(screenWidth / 2.0f) - (FRAME_W_RUN * PLAYERscale / 2.0f), (float)y, FRAME_W_RUN * PLAYERscale, FRAME_H_RUN * PLAYERscale};
         BeginDrawing();
+        ClearBackground(BLACK);
         DrawTexturePro(background, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
         DrawTexturePro(texRun, srcPlayer, dstPlayer, (Vector2){0, 0}, 0.0f, WHITE);
         DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
@@ -67,6 +68,7 @@ void escaladaBrenan()
         {
             winFrames--;
             BeginDrawing();
+            ClearBackground(BLACK);
             DrawTexturePro(background, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
             DrawTexturePro(texWin, srcWin, dstWin, (Vector2){0, 0}, 0.0f, WHITE);
             int tamanhoFonte = 40;
@@ -85,6 +87,7 @@ void escaladaBrenan()
         {
             loseFrames--;
             BeginDrawing();
+            ClearBackground(BLACK);
             DrawTexturePro(background, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
             DrawTexturePro(texRun, srcPlayer, dstPlayer, (Vector2){0, 0}, 0.0f, WHITE);
             int tamanhoFonte = 40;
