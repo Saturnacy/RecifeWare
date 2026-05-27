@@ -25,6 +25,7 @@ static void DrawSprite(Texture2D tex, float x, float y, float scale) {
 }
 
 void mulaSemCabeca(void) {
+    Texture2D borderGame = LoadTexture("../assets/sprites/border_game.png");
     int screenWidth=1200;
     int screenHeight=720;
     SetTargetFPS(60);
@@ -119,6 +120,7 @@ void mulaSemCabeca(void) {
             int lp=MeasureText("PULE!",30);
             DrawText("PULE!",(screenWidth/2)-(lp/2),30,30,YELLOW);
             DrawTimerBomba(&timer,screenWidth,screenHeight);
+            DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
         EndDrawing();
     }
     if (!colisao) {
@@ -132,7 +134,8 @@ void mulaSemCabeca(void) {
                 DrawSprite(mulaFrames[frameAtual],playerX,playerY,MULA_SCALE);
                 for (int i=0;i<NUM_OBS;i++) DrawSprite(obsTextures[obsTipo[i]],obs[i].x,obs[i].y,OBS_SCALE);
                 DrawTimerBomba(&timer,screenWidth,screenHeight);
-            EndDrawing();
+                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
+        EndDrawing();
         }
     }
     while (frames>0 && !WindowShouldClose()) {
@@ -144,8 +147,10 @@ void mulaSemCabeca(void) {
             Color cor=flag ? GREEN : RED;
             int lw=MeasureText(txt,sz);
             DrawText(txt,(screenWidth/2)-(lw/2),(screenHeight/2)-(sz/2),sz,cor);
+            DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
         EndDrawing();
     }
+    UnloadTexture(borderGame);
     UnloadTexture(background);
     for (int i=0;i<4;i++) UnloadTexture(mulaFrames[i]);
     for (int i=0;i<NUM_OBS;i++) UnloadTexture(obsTextures[i]);

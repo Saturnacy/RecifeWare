@@ -63,6 +63,7 @@ void crabber()
         }
     }
     Texture2D texBackground = LoadTexture("../assets/sprites/crabber/crabber_background.png");
+    Texture2D borderGame = LoadTexture("../assets/sprites/border_game.png");
     Texture2D texObjRio = LoadTexture("../assets/sprites/crabber/obj_rio.png");
     Texture2D texCrab[3];
     texCrab[0] = LoadTexture("../assets/sprites/crabber/crab1.png");
@@ -177,6 +178,7 @@ void crabber()
         int lwT = MeasureText("CRABBER - ATRAVESSE O RIO!", 26);
         DrawText("CRABBER - ATRAVESSE O RIO!", screenWidth / 2 - lwT / 2, 14, 26, YELLOW);
         DrawTimerBomba(&timer, screenWidth, screenHeight);
+            DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
         EndDrawing();
     }
     if (!flag && !colisao)
@@ -188,7 +190,8 @@ void crabber()
             ClearBackground(BLACK);
             DrawTexturePro(texBackground, srcBackground, dstBackground, orig0, 0.0f, WHITE);
             DrawTimerBomba(&timer, screenWidth, screenHeight);
-            EndDrawing();
+                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
+        EndDrawing();
         }
     }
     if (flag)
@@ -202,7 +205,8 @@ void crabber()
             int sz = 40;
             int lw = MeasureText("Vitoria", sz);
             DrawText("Vitoria", (screenWidth / 2) - (lw / 2), (screenHeight / 2) - (sz / 2), sz, GREEN);
-            EndDrawing();
+                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
+        EndDrawing();
         }
     }
     else
@@ -216,9 +220,11 @@ void crabber()
             int sz = 40;
             int lw = MeasureText("Derrota", sz);
             DrawText("Derrota", (screenWidth / 2) - (lw / 2), (screenHeight / 2) - (sz / 2), sz, RED);
-            EndDrawing();
+                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
+        EndDrawing();
         }
     }
+    UnloadTexture(borderGame);
     UnloadTexture(texBackground);
     UnloadTexture(texObjRio);
     for (int i = 0; i < 3; i++)

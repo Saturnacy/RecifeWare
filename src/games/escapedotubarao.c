@@ -7,6 +7,7 @@
 #define TEMPO_BOMBA_FUSE 1.5f
 
 void escapeDoTubarao(int dificuldade) {
+    Texture2D borderGame = LoadTexture("../assets/sprites/border_game.png");
     int screenWidth=1200;
     int screenHeight=720;
     SetTargetFPS(60);
@@ -71,6 +72,7 @@ void escapeDoTubarao(int dificuldade) {
             int larguraObj=MeasureText("EVITE O TUBARAO!",26);
             DrawText("EVITE O TUBARAO!",(screenWidth/2)-(larguraObj/2),18,26,WHITE);
             DrawTimerBomba(&timer,screenWidth,screenHeight);
+            DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
         EndDrawing();
     }
     if (!colisao) {
@@ -81,7 +83,8 @@ void escapeDoTubarao(int dificuldade) {
                 ClearBackground(SKYBLUE);
             DrawTexturePro(background,srcBg,dstBg,orig0,0.0f,WHITE);
                 DrawTimerBomba(&timer,screenWidth,screenHeight);
-            EndDrawing();
+                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
+        EndDrawing();
         }
     }
     if (flag) {
@@ -93,7 +96,8 @@ void escapeDoTubarao(int dificuldade) {
                 int tamanhoFonte=40;
                 int larguraTexto=MeasureText("Vitoria",tamanhoFonte);
                 DrawText("Vitoria",(screenWidth/2)-(larguraTexto/2),(screenHeight/2)-(tamanhoFonte/2),tamanhoFonte,GREEN);
-            EndDrawing();
+                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
+        EndDrawing();
         }
     } else {
         while (frames>0 && !WindowShouldClose()) {
@@ -104,9 +108,11 @@ void escapeDoTubarao(int dificuldade) {
                 int tamanhoFonte=40;
                 int larguraTexto=MeasureText("Derrota",tamanhoFonte);
                 DrawText("Derrota",(screenWidth/2)-(larguraTexto/2),(screenHeight/2)-(tamanhoFonte/2),tamanhoFonte,RED);
-            EndDrawing();
+                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
+        EndDrawing();
         }
     }
+    UnloadTexture(borderGame);
     UnloadTexture(background);
     UnloadTexture(texSeverino);
     UnloadTexture(texShark);

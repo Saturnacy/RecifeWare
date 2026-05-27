@@ -17,6 +17,7 @@ typedef struct {
 } Buraco;
 
 void pegueAsCapivaras() {
+    Texture2D borderGame = LoadTexture("../assets/sprites/border_game.png");
     int screenWidth=1200;
     int screenHeight=720;
     SetTargetFPS(60);
@@ -85,6 +86,7 @@ void pegueAsCapivaras() {
             DrawText("PEGUE AS CAPIVARAS!",(screenWidth/2)-(larguraObj/2),18,28,DARKBROWN);
             DrawText(TextFormat("Capturadas: %d",clicadas),20,18,24,WHITE);
             DrawTimerBomba(&timer,screenWidth,screenHeight);
+            DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
         EndDrawing();
     }
     if (totalApareceu>0 && clicadas>totalApareceu/2) flag=1;
@@ -93,6 +95,7 @@ void pegueAsCapivaras() {
         BeginDrawing();
             DrawTexturePro(texFundo,srcFundo,destFundo,(Vector2){0,0},0.0f,WHITE);
             DrawTimerBomba(&timer,screenWidth,screenHeight);
+            DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
         EndDrawing();
     }
     while (frames>0 && !WindowShouldClose()) {
@@ -107,8 +110,10 @@ void pegueAsCapivaras() {
                 int larg=MeasureText("Derrota",tamanhoFonte);
                 DrawText("Derrota",(screenWidth/2)-(larg/2),(screenHeight/2)-(tamanhoFonte/2),tamanhoFonte,RED);
             }
+            DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
         EndDrawing();
     }
+    UnloadTexture(borderGame);
     UnloadTexture(texFundo);
     UnloadTexture(texCapivara);
     UnloadTimerBomba(&timer);

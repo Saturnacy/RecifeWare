@@ -14,6 +14,7 @@
 #define FRAME_H_WIN  20
 
 void escaladaBrenan() {
+    Texture2D borderGame = LoadTexture("../assets/sprites/border_game.png");
     int screenWidth=1200;
     int screenHeight=720;
     SetTargetFPS(60);
@@ -50,6 +51,7 @@ void escaladaBrenan() {
             DrawText(TextFormat("Altura: %d/135",altura),20,20,20,RED);
             DrawText(TextFormat("Tempo Restante: %d",frames/60),20,50,20,RED);
             DrawTimerBomba(&timer,screenWidth,screenHeight);
+            DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
         EndDrawing();
     }
     if (flag) {
@@ -64,7 +66,8 @@ void escaladaBrenan() {
                 int tamanhoFonte=40;
                 int larguraTexto=MeasureText("Vitoria",tamanhoFonte);
                 DrawText("Vitoria",(screenWidth/2)-(larguraTexto/2),(screenHeight/2)-(tamanhoFonte/2),tamanhoFonte,GREEN);
-            EndDrawing();
+                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
+        EndDrawing();
         }
     } else {
         int loseFrames=120;
@@ -78,10 +81,12 @@ void escaladaBrenan() {
                 int tamanhoFonte=40;
                 int larguraTexto=MeasureText("Derrota",tamanhoFonte);
                 DrawText("Derrota",(screenWidth/2)-(larguraTexto/2),(screenHeight/2)-(tamanhoFonte/2),tamanhoFonte,RED);
-            EndDrawing();
+                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
+        EndDrawing();
         }
     }
     UnloadTimerBomba(&timer);
+    UnloadTexture(borderGame);
     UnloadTexture(background);
     UnloadTexture(texRun);
     UnloadTexture(texWin);

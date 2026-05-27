@@ -24,6 +24,7 @@ static void DrawIngrediente(Ingrediente *ing) {
 }
 
 void cozinhaDeTapioca() {
+    Texture2D borderGame = LoadTexture("../assets/sprites/border_game.png");
     int screenWidth=1200;
     int screenHeight=720;
     SetTargetFPS(60);
@@ -137,6 +138,7 @@ void cozinhaDeTapioca() {
             }
             if (arrastando>=0) DrawIngrediente(&ingredientes[arrastando]);
             DrawTimerBomba(&timer,screenWidth,screenHeight);
+            DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
         EndDrawing();
     }
     if (acertos>=1) flag=1;
@@ -146,7 +148,8 @@ void cozinhaDeTapioca() {
             BeginDrawing();
                 DrawTexturePro(texFundo,srcFundo,dstFundo,(Vector2){0,0},0.0f,WHITE);
                 DrawTimerBomba(&timer,screenWidth,screenHeight);
-            EndDrawing();
+                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
+        EndDrawing();
         }
     }
     if (flag) {
@@ -156,7 +159,8 @@ void cozinhaDeTapioca() {
                 DrawTexturePro(texFundo,srcFundo,dstFundo,(Vector2){0,0},0.0f,WHITE);
                 int ts=40,lw=MeasureText("Vitoria",ts);
                 DrawText("Vitoria",(screenWidth/2)-(lw/2),(screenHeight/2)-(ts/2),ts,GREEN);
-            EndDrawing();
+                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
+        EndDrawing();
         }
     } else {
         while (frames>0 && !WindowShouldClose()) {
@@ -165,9 +169,11 @@ void cozinhaDeTapioca() {
                 DrawTexturePro(texFundo,srcFundo,dstFundo,(Vector2){0,0},0.0f,WHITE);
                 int ts=40,lw=MeasureText("Derrota",ts);
                 DrawText("Derrota",(screenWidth/2)-(lw/2),(screenHeight/2)-(ts/2),ts,RED);
-            EndDrawing();
+                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
+        EndDrawing();
         }
     }
+    UnloadTexture(borderGame);
     UnloadTexture(texFundo);
     UnloadTexture(texTapioca);
     UnloadTexture(texCarne);
