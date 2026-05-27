@@ -5,56 +5,50 @@
 
 #define TEMPO_PAVIO      8.0f
 #define TEMPO_BOMBA_FUSE 1.5f
+#define NUM_BURACOS 6
+
+static const float BURACO_X[NUM_BURACOS]={148.0f,587.0f,1026.0f,148.0f,587.0f,1026.0f};
+static const float BURACO_Y[NUM_BURACOS]={336.0f,336.0f,336.0f,580.0f,580.0f,580.0f};
+static const float RAIO_BURACO_TELA=63.0f;
 
 typedef struct {
-    float x, y;
     float tempoAtivo;
-    int   ativa;
+    int ativa;
 } Buraco;
 
 void pegueAsCapivaras() {
     int screenWidth=1200;
     int screenHeight=720;
-
     SetTargetFPS(60);
-
     int flag=0;
     int frames=120;
     int clicadas=0;
     int totalApareceu=0;
     int frameSpawn=0;
     int intervaloSpawn=80;
-
-    float raioCapivara=45.0f;
-    float raioBuraco=50.0f;
     float tempoVisivel=1.2f;
-    Buraco buracos[9];
-    float inicioX=(screenWidth-3*200.0f)/2.0f+100.0f;
-    float inicioY=(screenHeight-3*160.0f)/2.0f+80.0f-30.0f;
-
-    for (int i=0;i<9;i++) {
-        buracos[i].x=inicioX+(i%3)*200.0f;
-        buracos[i].y=inicioY+(i/3)*160.0f;
+    Texture2D texFundo=LoadTexture("../assets/sprites/pegueascapivaras/pegar_capibara.png");
+    Texture2D texCapivara=LoadTexture("../assets/sprites/pegueascapivaras/capibara.png");
+    Buraco buracos[NUM_BURACOS];
+    for (int i=0;i<NUM_BURACOS;i++) {
         buracos[i].ativa=0;
         buracos[i].tempoAtivo=0.0f;
     }
-
+    Rectangle destFundo={0,0,(float)screenWidth,(float)screenHeight};
+    Rectangle srcFundo={0,0,(float)texFundo.width,(float)texFundo.height};
+    float escCapivara=(RAIO_BURACO_TELA*2.0f)/(float)texCapivara.width;
     TimerBomba timer;
     InitTimerBomba(&timer,TEMPO_PAVIO,TEMPO_BOMBA_FUSE);
-
-    while (timer.fase == FASE_PAVIO && !WindowShouldClose()) {
+    while (timer.fase==FASE_PAVIO && !WindowShouldClose()) {
         UpdateTimerBomba(&timer);
-
         float dt=GetFrameTime();
-
         frameSpawn++;
         if (frameSpawn>=intervaloSpawn) {
             frameSpawn=0;
-
             int tentativas=0;
-            int idx=rand()%9;
-            while (buracos[idx].ativa && tentativas<9) {
-                idx=(idx+1)%9;
+            int idx=rand()%NUM_BURACOS;
+            while (buracos[idx].ativa && tentativas<NUM_BURACOS) {
+                idx=(idx+1)%NUM_BURACOS;
                 tentativas++;
             }
             if (!buracos[idx].ativa) {
@@ -63,85 +57,59 @@ void pegueAsCapivaras() {
                 totalApareceu++;
             }
         }
-
-        for (int i=0;i<9;i++) {
+        for (int i=0;i<NUM_BURACOS;i++) {
             if (!buracos[i].ativa) continue;
             buracos[i].tempoAtivo-=dt;
-            if (buracos[i].tempoAtivo<=0.0f) {
-                buracos[i].ativa=0;
-            }
+            if (buracos[i].tempoAtivo<=0.0f) buracos[i].ativa=0;
         }
-
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             Vector2 mouse=GetMousePosition();
-            for (int i=0;i<9;i++) {
+            for (int i=0;i<NUM_BURACOS;i++) {
                 if (!buracos[i].ativa) continue;
-                if (CheckCollisionPointCircle(mouse,(Vector2){buracos[i].x,buracos[i].y},raioCapivara)) {
+                if (CheckCollisionPointCircle(mouse,(Vector2){BURACO_X[i],BURACO_Y[i]},RAIO_BURACO_TELA*0.85f)) {
                     buracos[i].ativa=0;
                     clicadas++;
                     break;
                 }
             }
         }
-
         BeginDrawing();
-            ClearBackground((Color){180,140,80,255});
+            DrawTexturePro(texFundo,srcFundo,destFundo,(Vector2){0,0},0.0f,WHITE);
+            for (int i=0;i<NUM_BURACOS;i++) {
+                if (!buracos[i].ativa) continue;
+                float drawX=BURACO_X[i]-(texCapivara.width*escCapivara)/2.0f;
+                float drawY=BURACO_Y[i]-(texCapivara.height*escCapivara)/2.0f;
+                DrawTextureEx(texCapivara,(Vector2){drawX,drawY},0.0f,escCapivara,WHITE);
+            }
             int larguraObj=MeasureText("PEGUE AS CAPIVARAS!",28);
             DrawText("PEGUE AS CAPIVARAS!",(screenWidth/2)-(larguraObj/2),18,28,DARKBROWN);
             DrawText(TextFormat("Capturadas: %d",clicadas),20,18,24,WHITE);
-
-            for (int i=0;i<9;i++) {
-                DrawCircle((int)buracos[i].x,(int)buracos[i].y,raioBuraco,DARKBROWN);
-
-                if (buracos[i].ativa) {
-                    DrawCircle((int)buracos[i].x,(int)buracos[i].y,raioCapivara,(Color){139,90,43,255});
-                    DrawCircle((int)buracos[i].x-13,(int)buracos[i].y-10,7,BLACK);
-                    DrawCircle((int)buracos[i].x+13,(int)buracos[i].y-10,7,BLACK);
-                    DrawCircle((int)buracos[i].x-11,(int)buracos[i].y-12,3,WHITE);
-                    DrawCircle((int)buracos[i].x+15,(int)buracos[i].y-12,3,WHITE);
-                    DrawEllipse((int)buracos[i].x,(int)buracos[i].y+10,16,10,(Color){160,100,50,255});
-                    DrawCircle((int)buracos[i].x-6,(int)buracos[i].y+8,3,DARKBROWN);
-                    DrawCircle((int)buracos[i].x+6,(int)buracos[i].y+8,3,DARKBROWN);
-                }
-            }
-
             DrawTimerBomba(&timer,screenWidth,screenHeight);
         EndDrawing();
     }
-
-    if (totalApareceu>0 && clicadas>totalApareceu/2) {
-        flag=1;
-    }
-
+    if (totalApareceu>0 && clicadas>totalApareceu/2) flag=1;
     while (!TimerTerminou(&timer) && !WindowShouldClose()) {
         UpdateTimerBomba(&timer);
         BeginDrawing();
-            ClearBackground((Color){180,140,80,255});
+            DrawTexturePro(texFundo,srcFundo,destFundo,(Vector2){0,0},0.0f,WHITE);
             DrawTimerBomba(&timer,screenWidth,screenHeight);
         EndDrawing();
     }
-
-    if (flag) {
-        while (frames>0 && !WindowShouldClose()) {
-            frames--;
-            BeginDrawing();
-                ClearBackground((Color){180,140,80,255});
-                int tamanhoFonte=40;
-                int larguraTexto=MeasureText("Vitoria",tamanhoFonte);
-                DrawText("Vitoria",(screenWidth/2)-(larguraTexto/2),(screenHeight/2)-(tamanhoFonte/2),tamanhoFonte,GREEN);
-            EndDrawing();
-        }
-    } else {
-        while (frames>0 && !WindowShouldClose()) {
-            frames--;
-            BeginDrawing();
-                ClearBackground((Color){180,140,80,255});
-                int tamanhoFonte=40;
-                int larguraTexto=MeasureText("Derrota",tamanhoFonte);
-                DrawText("Derrota",(screenWidth/2)-(larguraTexto/2),(screenHeight/2)-(tamanhoFonte/2),tamanhoFonte,RED);
-            EndDrawing();
-        }
+    while (frames>0 && !WindowShouldClose()) {
+        frames--;
+        BeginDrawing();
+            DrawTexturePro(texFundo,srcFundo,destFundo,(Vector2){0,0},0.0f,WHITE);
+            int tamanhoFonte=40;
+            if (flag) {
+                int larg=MeasureText("Vitoria",tamanhoFonte);
+                DrawText("Vitoria",(screenWidth/2)-(larg/2),(screenHeight/2)-(tamanhoFonte/2),tamanhoFonte,GREEN);
+            } else {
+                int larg=MeasureText("Derrota",tamanhoFonte);
+                DrawText("Derrota",(screenWidth/2)-(larg/2),(screenHeight/2)-(tamanhoFonte/2),tamanhoFonte,RED);
+            }
+        EndDrawing();
     }
-
+    UnloadTexture(texFundo);
+    UnloadTexture(texCapivara);
     UnloadTimerBomba(&timer);
 }
