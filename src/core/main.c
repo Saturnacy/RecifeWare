@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "escaladaBrenan.h"
+#include "crabber.h"
 #include "player.h"
 #include "queue.h"
 #include "sort.h"
@@ -258,6 +259,7 @@ int main()
             Rectangle btnOptions = {screenWidth / 2 - 100, 420, 200, 40};
             Rectangle btnExit = {screenWidth / 2 - 100, 480, 200, 40};
 
+<<<<<<< HEAD
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 if (CheckCollisionPointRec(mousePoint, btnMain))
@@ -274,6 +276,17 @@ int main()
                 else if (CheckCollisionPointRec(mousePoint, btnExit))
                 {
                     exitGame = true;
+=======
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+                if (CheckCollisionPointRec(mousePoint, btnMain)) {
+                    crabber(); 
+                } else if (CheckCollisionPointRec(mousePoint, btnArcade)) {
+                    currentState = STATE_DEBUG; 
+                } else if (CheckCollisionPointRec(mousePoint, btnOptions)) {
+                    // Futura lógica de Opções
+                } else if (CheckCollisionPointRec(mousePoint, btnExit)) {
+                    exitGame = true; 
+>>>>>>> c2e727e6e685300f510ec57aaa7e930ca4f8672c
                 }
             }
         }
