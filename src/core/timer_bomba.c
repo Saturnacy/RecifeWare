@@ -1,4 +1,4 @@
-#include "timer_bomba.h"
+﻿#include "timer_bomba.h"
 #include "raylib.h"
 
 #define BOMBA_SCALE 3.0f
@@ -8,8 +8,8 @@
 #define PAVIO_CENTER_Y 23 
 
 void InitTimerBomba(TimerBomba *timer, float tempoTotal, float tempoBombaFuse) {
-    timer->bombaTex = LoadTexture("../assets/sprites/Bomba-Sheet.png");
-    timer->pavioTex = LoadTexture("../assets/sprites/Pavio-Sheet.png");
+    timer->bombaTex = LoadTexture("assets/sprites/Bomba-Sheet.png");
+    timer->pavioTex = LoadTexture("assets/sprites/Pavio-Sheet.png");
 
     timer->bombaFrameWidth = timer->bombaTex.width / BOMBA_FRAMES; 
     timer->pavioFrameWidth = timer->pavioTex.width / PAVIO_FRAMES; 

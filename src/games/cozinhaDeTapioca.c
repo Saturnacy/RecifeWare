@@ -1,4 +1,4 @@
-#include "cozinhaDeTapioca.h"
+﻿#include "cozinhaDeTapioca.h"
 #include "timer_bomba.h"
 #include "raylib.h"
 #include <stdlib.h>
@@ -27,18 +27,18 @@ static void DrawIngrediente(Ingrediente *ing)
 
 void cozinhaDeTapioca()
 {
-    Texture2D borderGame = LoadTexture("../assets/sprites/border_game.png");
+    Texture2D borderGame = LoadTexture("assets/sprites/border_game.png");
     int screenWidth = 1200;
     int screenHeight = 720;
     SetTargetFPS(60);
     int flag = 0;
     int errou = 0;
     int frames = 120;
-    Texture2D texFundo = LoadTexture("../assets/sprites/cozinhaDeTapioca/Tapioca_com_tapioca.png");
-    Texture2D texTapioca = LoadTexture("../assets/sprites/cozinhaDeTapioca/tapioca_ingrediente.png");
-    Texture2D texCarne = LoadTexture("../assets/sprites/cozinhaDeTapioca/carne.png");
-    Texture2D texPeixe = LoadTexture("../assets/sprites/cozinhaDeTapioca/peixe.png");
-    Texture2D texAlface = LoadTexture("../assets/sprites/cozinhaDeTapioca/alface.png");
+    Texture2D texFundo = LoadTexture("assets/sprites/cozinhaDeTapioca/Tapioca_com_tapioca.png");
+    Texture2D texTapioca = LoadTexture("assets/sprites/cozinhaDeTapioca/tapioca_ingrediente.png");
+    Texture2D texCarne = LoadTexture("assets/sprites/cozinhaDeTapioca/carne.png");
+    Texture2D texPeixe = LoadTexture("assets/sprites/cozinhaDeTapioca/peixe.png");
+    Texture2D texAlface = LoadTexture("assets/sprites/cozinhaDeTapioca/alface.png");
     Rectangle srcFundo = {0, 0, (float)texFundo.width, (float)texFundo.height};
     Rectangle dstFundo = {0, 0, (float)screenWidth, (float)screenHeight};
     float tapScale = 3.5f;

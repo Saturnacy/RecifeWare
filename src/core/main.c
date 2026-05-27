@@ -1,4 +1,4 @@
-#include "raylib.h"
+﻿#include "raylib.h"
 #include "transition.h"
 #include "cozinhaDeTapioca.h"
 #include "crabber.h"
@@ -85,20 +85,20 @@ int main()
     LoadGameFont();
     Font f = GetGameFont();
 
-    Texture2D cesarLogo = LoadTexture("../assets/sprites/cesar_logo.png");
-    Texture2D borderTs = LoadTexture("../assets/sprites/title_screen/border_ts.png");
-    Texture2D screenTs = LoadTexture("../assets/sprites/title_screen/screen_ts.png");
-    Texture2D loadingScreen = LoadTexture("../assets/sprites/title_screen/loading_ts.png");
-    Texture2D loadingComplete = LoadTexture("../assets/sprites/title_screen/loadingcomplete.png");
-    Texture2D gameLogo = LoadTexture("../assets/sprites/title_screen/game_logo.png");
+    Texture2D cesarLogo = LoadTexture("assets/sprites/cesar_logo.png");
+    Texture2D borderTs = LoadTexture("assets/sprites/title_screen/border_ts.png");
+    Texture2D screenTs = LoadTexture("assets/sprites/title_screen/screen_ts.png");
+    Texture2D loadingScreen = LoadTexture("assets/sprites/title_screen/loading_ts.png");
+    Texture2D loadingComplete = LoadTexture("assets/sprites/title_screen/loadingcomplete.png");
+    Texture2D gameLogo = LoadTexture("assets/sprites/title_screen/game_logo.png");
 
     Texture2D icons[6];
-    icons[0] = LoadTexture("../assets/sprites/title_screen/trash_icon.png");
-    icons[1] = LoadTexture("../assets/sprites/title_screen/mail_icon.png");
-    icons[2] = LoadTexture("../assets/sprites/title_screen/map_icon.png");
-    icons[3] = LoadTexture("../assets/sprites/title_screen/pc_icon.png");
-    icons[4] = LoadTexture("../assets/sprites/title_screen/diskette.png");
-    icons[5] = LoadTexture("../assets/sprites/title_screen/frevo_icon.png");
+    icons[0] = LoadTexture("assets/sprites/title_screen/trash_icon.png");
+    icons[1] = LoadTexture("assets/sprites/title_screen/mail_icon.png");
+    icons[2] = LoadTexture("assets/sprites/title_screen/map_icon.png");
+    icons[3] = LoadTexture("assets/sprites/title_screen/pc_icon.png");
+    icons[4] = LoadTexture("assets/sprites/title_screen/diskette.png");
+    icons[5] = LoadTexture("assets/sprites/title_screen/frevo_icon.png");
 
     float CESARlogoscale = 2.0f;
     float monitorAlpha = 255.0f;

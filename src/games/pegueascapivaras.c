@@ -1,4 +1,4 @@
-#include "pegueAsCapivaras.h"
+﻿#include "pegueAsCapivaras.h"
 #include "timer_bomba.h"
 #include "raylib.h"
 #include <stdlib.h>
@@ -19,7 +19,7 @@ typedef struct
 
 void pegueAsCapivaras()
 {
-    Texture2D borderGame = LoadTexture("../assets/sprites/border_game.png");
+    Texture2D borderGame = LoadTexture("assets/sprites/border_game.png");
     int screenWidth = 1200;
     int screenHeight = 720;
     SetTargetFPS(60);
@@ -30,8 +30,8 @@ void pegueAsCapivaras()
     int frameSpawn = 0;
     int intervaloSpawn = 80;
     float tempoVisivel = 1.2f;
-    Texture2D texFundo = LoadTexture("../assets/sprites/pegueascapivaras/pegar_capibara.png");
-    Texture2D texCapivara = LoadTexture("../assets/sprites/pegueascapivaras/capibara.png");
+    Texture2D texFundo = LoadTexture("assets/sprites/pegueascapivaras/pegar_capibara.png");
+    Texture2D texCapivara = LoadTexture("assets/sprites/pegueascapivaras/capibara.png");
     Buraco buracos[NUM_BURACOS];
     for (int i = 0; i < NUM_BURACOS; i++)
     {

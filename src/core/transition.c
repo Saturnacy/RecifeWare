@@ -1,4 +1,4 @@
-#include "transition.h"
+﻿#include "transition.h"
 #include "raylib.h"
 
 #define DISC_FRAME_COUNT 5
@@ -11,15 +11,15 @@ static const int DISC_SEQ[]={0,1,2,3,4,4,4,4,3,2,1,0,0,0,0,0};
 void RunTransitionScreen(void) {
     int W=1200,H=720;
     SetTargetFPS(60);
-    Texture2D texMonitor=LoadTexture("../assets/sprites/monitor.png");
-    Texture2D texKeyboard=LoadTexture("../assets/sprites/keyboard.png");
-    Texture2D texPC=LoadTexture("../assets/sprites/pc.png");
+    Texture2D texMonitor=LoadTexture("assets/sprites/monitor.png");
+    Texture2D texKeyboard=LoadTexture("assets/sprites/keyboard.png");
+    Texture2D texPC=LoadTexture("assets/sprites/pc.png");
     Texture2D discFrames[DISC_FRAME_COUNT];
-    discFrames[0]=LoadTexture("../assets/sprites/discreader/0.png");
-    discFrames[1]=LoadTexture("../assets/sprites/discreader/1.png");
-    discFrames[2]=LoadTexture("../assets/sprites/discreader/2.png");
-    discFrames[3]=LoadTexture("../assets/sprites/discreader/3.png");
-    discFrames[4]=LoadTexture("../assets/sprites/discreader/4.png");
+    discFrames[0]=LoadTexture("assets/sprites/discreader/0.png");
+    discFrames[1]=LoadTexture("assets/sprites/discreader/1.png");
+    discFrames[2]=LoadTexture("assets/sprites/discreader/2.png");
+    discFrames[3]=LoadTexture("assets/sprites/discreader/3.png");
+    discFrames[4]=LoadTexture("assets/sprites/discreader/4.png");
     float SC=SPRITE_SCALE;
     float pcW=texPC.width*SC,pcH=texPC.height*SC;
     float monW=texMonitor.width*SC,monH=texMonitor.height*SC;

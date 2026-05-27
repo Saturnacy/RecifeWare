@@ -1,4 +1,4 @@
-#include "font.h"
+﻿#include "font.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -65,7 +65,7 @@ static const Rectangle fontRects[] = {
 void LoadGameFont(void) {
     if (fontLoaded) return;
 
-    Image img = LoadImage("../assets/fonts/menu_font.png");
+    Image img = LoadImage("assets/fonts/menu_font.png");
     if (img.data == NULL) {
         TraceLog(LOG_WARNING, "FONT: Nao foi possivel carregar menu_font.png");
         return;

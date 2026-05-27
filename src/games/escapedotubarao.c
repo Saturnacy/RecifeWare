@@ -1,4 +1,4 @@
-#include "escapeDoTubarao.h"
+﻿#include "escapeDoTubarao.h"
 #include "timer_bomba.h"
 #include "raylib.h"
 #include <math.h>
@@ -8,7 +8,7 @@
 
 void escapeDoTubarao(int dificuldade)
 {
-    Texture2D borderGame = LoadTexture("../assets/sprites/border_game.png");
+    Texture2D borderGame = LoadTexture("assets/sprites/border_game.png");
     int screenWidth = 1200;
     int screenHeight = 720;
     SetTargetFPS(60);
@@ -27,10 +27,10 @@ void escapeDoTubarao(int dificuldade)
     float tubaraoY = 40.0f;
     float tubaraoRaio = 25.0f;
     float tubaraoVel = 1.5f + (dificuldade - 1) * 1.5f;
-    Texture2D background = LoadTexture("../assets/sprites/escapedoTubarao/fuja_tubarao_background.png");
-    Texture2D texSeverino = LoadTexture("../assets/sprites/escapedoTubarao/severino.png");
-    Texture2D texShark = LoadTexture("../assets/sprites/escapedoTubarao/shark.png");
-    Texture2D texSeta = LoadTexture("../assets/sprites/escapedoTubarao/seta.png");
+    Texture2D background = LoadTexture("assets/sprites/escapedoTubarao/fuja_tubarao_background.png");
+    Texture2D texSeverino = LoadTexture("assets/sprites/escapedoTubarao/severino.png");
+    Texture2D texShark = LoadTexture("assets/sprites/escapedoTubarao/shark.png");
+    Texture2D texSeta = LoadTexture("assets/sprites/escapedoTubarao/seta.png");
     float sevW = texSeverino.width * 1.8f;
     float sevH = texSeverino.height * 1.8f;
     float shrW = texShark.width * 2.0f;

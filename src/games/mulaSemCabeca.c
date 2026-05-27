@@ -1,11 +1,11 @@
-#include "mulaSemCabeca.h"
+﻿#include "mulaSemCabeca.h"
 #include "timer_bomba.h"
 #include "raylib.h"
 #include <stdlib.h>
 
 #define TEMPO_PAVIO 8.0f
 #define TEMPO_BOMBA_FUSE 1.5f
-#define SPR "../assets/sprites/mulaSemCabeca/"
+#define SPR "assets/sprites/mulaSemCabeca/"
 #define MULA_SCALE 2.0f
 #define OBS_SCALE 3.0f
 #define NUM_OBS 4
@@ -31,7 +31,7 @@ static void DrawSprite(Texture2D tex, float x, float y, float scale)
 
 void mulaSemCabeca(void)
 {
-    Texture2D borderGame = LoadTexture("../assets/sprites/border_game.png");
+    Texture2D borderGame = LoadTexture("assets/sprites/border_game.png");
     int screenWidth = 1200;
     int screenHeight = 720;
     SetTargetFPS(60);

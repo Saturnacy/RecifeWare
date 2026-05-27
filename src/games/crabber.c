@@ -1,4 +1,4 @@
-#include "crabber.h"
+﻿#include "crabber.h"
 #include "timer_bomba.h"
 #include "raylib.h"
 #include <stdlib.h>
@@ -62,13 +62,13 @@ void crabber()
             plats[l][p].vel = vel;
         }
     }
-    Texture2D texBackground = LoadTexture("../assets/sprites/crabber/crabber_background.png");
-    Texture2D borderGame = LoadTexture("../assets/sprites/border_game.png");
-    Texture2D texObjRio = LoadTexture("../assets/sprites/crabber/obj_rio.png");
+    Texture2D texBackground = LoadTexture("assets/sprites/crabber/crabber_background.png");
+    Texture2D borderGame = LoadTexture("assets/sprites/border_game.png");
+    Texture2D texObjRio = LoadTexture("assets/sprites/crabber/obj_rio.png");
     Texture2D texCrab[3];
-    texCrab[0] = LoadTexture("../assets/sprites/crabber/crab1.png");
-    texCrab[1] = LoadTexture("../assets/sprites/crabber/crab2.png");
-    texCrab[2] = LoadTexture("../assets/sprites/crabber/crab3.png");
+    texCrab[0] = LoadTexture("assets/sprites/crabber/crab1.png");
+    texCrab[1] = LoadTexture("assets/sprites/crabber/crab2.png");
+    texCrab[2] = LoadTexture("assets/sprites/crabber/crab3.png");
     Rectangle srcBackground = {0, 0, (float)texBackground.width, (float)texBackground.height};
     Rectangle dstBackground = {0, 0, (float)screenWidth, (float)screenHeight};
     Rectangle srcCrab = {0, 0, 32, 32};

@@ -1,4 +1,4 @@
-#include "player.h"
+﻿#include "player.h"
 #include "escaladaBrenan.h"
 #include <raylib.h>
 #include <string.h>
@@ -15,7 +15,7 @@
 
 void escaladaBrenan()
 {
-    Texture2D borderGame = LoadTexture("../assets/sprites/border_game.png");
+    Texture2D borderGame = LoadTexture("assets/sprites/border_game.png");
     int screenWidth = 1200;
     int screenHeight = 720;
     SetTargetFPS(60);
@@ -25,9 +25,9 @@ void escaladaBrenan()
     int frames = 300;
     int frameAtual = 0;
     float PLAYERscale = 4.0f;
-    Texture2D background = LoadTexture("../assets/sprites/escaleBrenan/bgobren.png");
-    Texture2D texRun = LoadTexture("../assets/sprites/escaleBrenan/mouse.png");
-    Texture2D texWin = LoadTexture("../assets/sprites/escaleBrenan/mouse_win.png");
+    Texture2D background = LoadTexture("assets/sprites/escaleBrenan/bgobren.png");
+    Texture2D texRun = LoadTexture("assets/sprites/escaleBrenan/mouse.png");
+    Texture2D texWin = LoadTexture("assets/sprites/escaleBrenan/mouse_win.png");
     Rectangle srcFundo = {0, 0, (float)background.width, (float)background.height};
     Rectangle dstFundo = {0, 0, (float)screenWidth, (float)screenHeight};
     TimerBomba timer;
