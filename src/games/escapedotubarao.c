@@ -8,7 +8,7 @@
 
 void escapeDoTubarao(int dificuldade)
 {
-    Texture2D borderGame = LoadTexture("assets/sprites/border_game.png");
+    Texture2D borderGame = LoadTexture("assets/sprites/title_screen/border_ts.png");
     int screenWidth = 1200;
     int screenHeight = 720;
     SetTargetFPS(60);
@@ -76,7 +76,7 @@ void escapeDoTubarao(int dificuldade)
         if (CheckCollisionCircles((Vector2){playerX, playerY}, playerRaio, (Vector2){tubaraoX, tubaraoY}, tubaraoRaio))
             colisao = 1;
         BeginDrawing();
-        ClearBackground(BLACK);
+        ClearBackground(SKYBLUE);
         DrawTexturePro(background, srcBg, dstBg, orig0, 0.0f, WHITE);
         DrawTexturePro(texSeta, srcSet, (Rectangle){arenaX + arenaSizeW / 2.0f, arenaY + setH / 2.0f, setW, setH}, origSet, 180.0f, WHITE);
         DrawTexturePro(texSeta, srcSet, (Rectangle){arenaX + arenaSizeW / 2.0f, arenaY + arenaSizeH - setH / 2.0f, setW, setH}, origSet, 0.0f, WHITE);
@@ -97,10 +97,10 @@ void escapeDoTubarao(int dificuldade)
         {
             UpdateTimerBomba(&timer);
             BeginDrawing();
-            ClearBackground(BLACK);
+            ClearBackground(SKYBLUE);
             DrawTexturePro(background, srcBg, dstBg, orig0, 0.0f, WHITE);
-            DrawTimerBomba(&timer, screenWidth, screenHeight);
             DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
+            DrawTimerBomba(&timer, screenWidth, screenHeight);
             EndDrawing();
         }
     }
@@ -110,7 +110,7 @@ void escapeDoTubarao(int dificuldade)
         {
             frames--;
             BeginDrawing();
-            ClearBackground(BLACK);
+            ClearBackground(SKYBLUE);
             DrawTexturePro(background, srcBg, dstBg, orig0, 0.0f, WHITE);
             int tamanhoFonte = 40;
             int larguraTexto = MeasureText("Vitoria", tamanhoFonte);
@@ -125,7 +125,7 @@ void escapeDoTubarao(int dificuldade)
         {
             frames--;
             BeginDrawing();
-            ClearBackground(BLACK);
+            ClearBackground(SKYBLUE);
             DrawTexturePro(background, srcBg, dstBg, orig0, 0.0f, WHITE);
             int tamanhoFonte = 40;
             int larguraTexto = MeasureText("Derrota", tamanhoFonte);

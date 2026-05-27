@@ -63,7 +63,7 @@ void crabber()
         }
     }
     Texture2D texBackground = LoadTexture("assets/sprites/crabber/crabber_background.png");
-    Texture2D borderGame = LoadTexture("assets/sprites/border_game.png");
+    Texture2D borderGame = LoadTexture("assets/sprites/title_screen/border_ts.png");
     Texture2D texObjRio = LoadTexture("assets/sprites/crabber/obj_rio.png");
     Texture2D texCrab[3];
     texCrab[0] = LoadTexture("assets/sprites/crabber/crab1.png");
@@ -192,8 +192,8 @@ void crabber()
             BeginDrawing();
             ClearBackground(BLACK);
             DrawTexturePro(texBackground, srcBackground, dstBackground, orig0, 0.0f, WHITE);
-            DrawTimerBomba(&timer, screenWidth, screenHeight);
             DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
+            DrawTimerBomba(&timer, screenWidth, screenHeight);
             EndDrawing();
         }
     }

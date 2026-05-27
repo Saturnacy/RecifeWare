@@ -27,7 +27,7 @@ static void DrawIngrediente(Ingrediente *ing)
 
 void cozinhaDeTapioca()
 {
-    Texture2D borderGame = LoadTexture("assets/sprites/border_game.png");
+    Texture2D borderGame = LoadTexture("assets/sprites/title_screen/border_ts.png");
     int screenWidth = 1200;
     int screenHeight = 720;
     SetTargetFPS(60);
@@ -150,7 +150,6 @@ void cozinhaDeTapioca()
             arrastando = -1;
         }
         BeginDrawing();
-        ClearBackground(BLACK);
         DrawTexturePro(texFundo, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
         DrawRectangleRounded((Rectangle){20, 20, 260, 90}, 0.2f, 4, (Color){0, 0, 0, 140});
         DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
@@ -178,10 +177,9 @@ void cozinhaDeTapioca()
         {
             UpdateTimerBomba(&timer);
             BeginDrawing();
-            ClearBackground(BLACK);
             DrawTexturePro(texFundo, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
-            DrawTimerBomba(&timer, screenWidth, screenHeight);
             DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
+            DrawTimerBomba(&timer, screenWidth, screenHeight);
             EndDrawing();
         }
     }
@@ -191,7 +189,6 @@ void cozinhaDeTapioca()
         {
             frames--;
             BeginDrawing();
-            ClearBackground(BLACK);
             DrawTexturePro(texFundo, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
             int ts = 40, lw = MeasureText("Vitoria", ts);
             DrawText("Vitoria", (screenWidth / 2) - (lw / 2), (screenHeight / 2) - (ts / 2), ts, GREEN);
@@ -205,7 +202,6 @@ void cozinhaDeTapioca()
         {
             frames--;
             BeginDrawing();
-            ClearBackground(BLACK);
             DrawTexturePro(texFundo, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
             int ts = 40, lw = MeasureText("Derrota", ts);
             DrawText("Derrota", (screenWidth / 2) - (lw / 2), (screenHeight / 2) - (ts / 2), ts, RED);

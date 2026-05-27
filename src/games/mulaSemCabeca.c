@@ -31,7 +31,7 @@ static void DrawSprite(Texture2D tex, float x, float y, float scale)
 
 void mulaSemCabeca(void)
 {
-    Texture2D borderGame = LoadTexture("assets/sprites/border_game.png");
+    Texture2D borderGame = LoadTexture("assets/sprites/title_screen/border_ts.png");
     int screenWidth = 1200;
     int screenHeight = 720;
     SetTargetFPS(60);
@@ -130,7 +130,6 @@ void mulaSemCabeca(void)
             }
         }
         BeginDrawing();
-        ClearBackground(BLACK);
         DrawBgScroll(background, bgX, screenWidth, screenHeight);
         DrawSprite(mulaFrames[frameAtual], playerX, playerY, MULA_SCALE);
         for (int i = 0; i < NUM_OBS; i++)
@@ -151,13 +150,12 @@ void mulaSemCabeca(void)
             if (bgX <= -(float)screenWidth)
                 bgX = 0.0f;
             BeginDrawing();
-            ClearBackground(BLACK);
             DrawBgScroll(background, bgX, screenWidth, screenHeight);
             DrawSprite(mulaFrames[frameAtual], playerX, playerY, MULA_SCALE);
             for (int i = 0; i < NUM_OBS; i++)
                 DrawSprite(obsTextures[obsTipo[i]], obs[i].x, obs[i].y, OBS_SCALE);
-            DrawTimerBomba(&timer, screenWidth, screenHeight);
             DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
+            DrawTimerBomba(&timer, screenWidth, screenHeight);
             EndDrawing();
         }
     }

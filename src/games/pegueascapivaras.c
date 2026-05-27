@@ -19,7 +19,7 @@ typedef struct
 
 void pegueAsCapivaras()
 {
-    Texture2D borderGame = LoadTexture("assets/sprites/border_game.png");
+    Texture2D borderGame = LoadTexture("assets/sprites/title_screen/border_ts.png");
     int screenWidth = 1200;
     int screenHeight = 720;
     SetTargetFPS(60);
@@ -89,7 +89,6 @@ void pegueAsCapivaras()
             }
         }
         BeginDrawing();
-        ClearBackground(BLACK);
         DrawTexturePro(texFundo, srcFundo, destFundo, (Vector2){0, 0}, 0.0f, WHITE);
         for (int i = 0; i < NUM_BURACOS; i++)
         {
@@ -112,17 +111,15 @@ void pegueAsCapivaras()
     {
         UpdateTimerBomba(&timer);
         BeginDrawing();
-        ClearBackground(BLACK);
         DrawTexturePro(texFundo, srcFundo, destFundo, (Vector2){0, 0}, 0.0f, WHITE);
-        DrawTimerBomba(&timer, screenWidth, screenHeight);
         DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
+        DrawTimerBomba(&timer, screenWidth, screenHeight);
         EndDrawing();
     }
     while (frames > 0 && !WindowShouldClose())
     {
         frames--;
         BeginDrawing();
-        ClearBackground(BLACK);
         DrawTexturePro(texFundo, srcFundo, destFundo, (Vector2){0, 0}, 0.0f, WHITE);
         int tamanhoFonte = 40;
         if (flag)

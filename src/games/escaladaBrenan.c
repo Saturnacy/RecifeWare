@@ -15,7 +15,7 @@
 
 void escaladaBrenan()
 {
-    Texture2D borderGame = LoadTexture("assets/sprites/border_game.png");
+    Texture2D borderGame = LoadTexture("assets/sprites/title_screen/border_ts.png");
     int screenWidth = 1200;
     int screenHeight = 720;
     SetTargetFPS(60);
@@ -50,7 +50,6 @@ void escaladaBrenan()
         Rectangle srcPlayer = {(float)(frameAtual * FRAME_W_RUN), 0.0f, (float)FRAME_W_RUN, (float)FRAME_H_RUN};
         Rectangle dstPlayer = {(screenWidth / 2.0f) - (FRAME_W_RUN * PLAYERscale / 2.0f), (float)y, FRAME_W_RUN * PLAYERscale, FRAME_H_RUN * PLAYERscale};
         BeginDrawing();
-        ClearBackground(BLACK);
         DrawTexturePro(background, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
         DrawTexturePro(texRun, srcPlayer, dstPlayer, (Vector2){0, 0}, 0.0f, WHITE);
         DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
@@ -68,7 +67,6 @@ void escaladaBrenan()
         {
             winFrames--;
             BeginDrawing();
-            ClearBackground(BLACK);
             DrawTexturePro(background, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
             DrawTexturePro(texWin, srcWin, dstWin, (Vector2){0, 0}, 0.0f, WHITE);
             int tamanhoFonte = 40;
@@ -87,7 +85,6 @@ void escaladaBrenan()
         {
             loseFrames--;
             BeginDrawing();
-            ClearBackground(BLACK);
             DrawTexturePro(background, srcFundo, dstFundo, (Vector2){0, 0}, 0.0f, WHITE);
             DrawTexturePro(texRun, srcPlayer, dstPlayer, (Vector2){0, 0}, 0.0f, WHITE);
             int tamanhoFonte = 40;
