@@ -177,8 +177,8 @@ void crabber()
         DrawText("CHEGUE AQUI!", screenWidth / 2 - lwMeta / 2, (int)(metaY + metaH / 2.0f - 11), 22, WHITE);
         int lwT = MeasureText("CRABBER - ATRAVESSE O RIO!", 26);
         DrawText("CRABBER - ATRAVESSE O RIO!", screenWidth / 2 - lwT / 2, 14, 26, YELLOW);
+        DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
         DrawTimerBomba(&timer, screenWidth, screenHeight);
-            DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
         EndDrawing();
     }
     if (!flag && !colisao)
@@ -190,8 +190,8 @@ void crabber()
             ClearBackground(BLACK);
             DrawTexturePro(texBackground, srcBackground, dstBackground, orig0, 0.0f, WHITE);
             DrawTimerBomba(&timer, screenWidth, screenHeight);
-                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
-        EndDrawing();
+            DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
+            EndDrawing();
         }
     }
     if (flag)
@@ -205,8 +205,8 @@ void crabber()
             int sz = 40;
             int lw = MeasureText("Vitoria", sz);
             DrawText("Vitoria", (screenWidth / 2) - (lw / 2), (screenHeight / 2) - (sz / 2), sz, GREEN);
-                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
-        EndDrawing();
+            DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
+            EndDrawing();
         }
     }
     else
@@ -220,8 +220,8 @@ void crabber()
             int sz = 40;
             int lw = MeasureText("Derrota", sz);
             DrawText("Derrota", (screenWidth / 2) - (lw / 2), (screenHeight / 2) - (sz / 2), sz, RED);
-                DrawTexturePro(borderGame,(Rectangle){0,0,(float)borderGame.width,(float)borderGame.height},(Rectangle){0,0,1200,720},(Vector2){0,0},0.0f,WHITE);
-        EndDrawing();
+            DrawTexturePro(borderGame, (Rectangle){0, 0, (float)borderGame.width, (float)borderGame.height}, (Rectangle){0, 0, 1200, 720}, (Vector2){0, 0}, 0.0f, WHITE);
+            EndDrawing();
         }
     }
     UnloadTexture(borderGame);
