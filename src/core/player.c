@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 int validate_name(char *nome, int mat[11][5], int cont){
     if(cont<3) return -1;
 
