@@ -14,6 +14,7 @@
 #include <string.h>
 #include "font.h"
 #include <math.h>
+#include "intro.h"
 
 #define NUM_GAMES 6
 
@@ -22,6 +23,7 @@ typedef enum
     STATE_SPLASH_FADE_IN,
     STATE_SPLASH_CESAR,
     STATE_FADE_OUT,
+    STATE_INTRO,
     STATE_WAIT_BORDER,
     STATE_BORDER_IN,
     STATE_SCREEN_IN,
@@ -164,9 +166,14 @@ int main()
             if (fadeAlpha >= 255.0f)
             {
                 fadeAlpha = 255.0f;
-                waitTimer = 0.0f;
-                currentState = STATE_WAIT_BORDER;
+                currentState = STATE_INTRO;
             }
+            break;
+
+        case STATE_INTRO:
+            RunIntro();
+            waitTimer = 0.0f;
+            currentState = STATE_WAIT_BORDER;
             break;
 
         case STATE_WAIT_BORDER:
@@ -462,6 +469,7 @@ int main()
         case STATE_SPLASH_FADE_IN:
         case STATE_SPLASH_CESAR:
         case STATE_FADE_OUT:
+        case STATE_INTRO:
         case STATE_WAIT_BORDER:
         {
             Rectangle sourceRec = {0.0f, 0.0f, (float)cesarLogo.width, (float)cesarLogo.height};
@@ -819,6 +827,7 @@ int main()
             bool isSplash = (currentState == STATE_SPLASH_FADE_IN ||
                              currentState == STATE_SPLASH_CESAR ||
                              currentState == STATE_FADE_OUT ||
+                             currentState == STATE_INTRO ||
                              currentState == STATE_WAIT_BORDER ||
                              currentState == STATE_BORDER_IN);
             if (isSplash)
